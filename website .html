@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Professional Website</title>
+    <style>
+        /* Add your professional CSS styles here */
+        body {
+            background-color: #00ff00;
+            font-family: Arial, sans-serif;
+        }
+
+        #productSection {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #000;
+            border-radius: 10px;
+        }
+
+        #cartIcon,
+        #chatIcon {
+            float: right;
+            margin: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cartIcon">🛒</div>
+    <div id="chatIcon">💬</div>
+
+    <div id="productSection">
+        <!-- Your product HTML here -->
+    </div>
+
+    <script>
+        // Sample product data
+        const products = [
+            { name: 'Product 1', image: 'product1.jpg', price: 19.99 },
+            // Add more product objects as needed
+        ];
+
+        // Function to display products in the product section
+        function displayProducts() {
+            const productSection = document.getElementById('productSection');
+            productSection.innerHTML = '';
+
+            products.forEach(product => {
+                productSection.appendChild(createProductElement(product));
+            });
+        }
+
+        // Function to create a product element
+        function createProductElement(product) {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product';
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <p>${product.name}</p>
+                <p>$${product.price}</p>
+            `;
+            productDiv.addEventListener('click', () => addToCart(product));
+            return productDiv;
+        }
+
+        // Function to handle adding a product to the cart
+        function addToCart(product) {
+            // Add your cart logic here
+            console.log(`Added ${product.name} to the cart`);
+        }
+
+        // Function to handle private chat with the owner
+        function startPrivateChat() {
+            // Add your chat logic here
+            console.log('Opening private chat with the owner');
+        }
+
+        // Event listeners for cart and chat icons
+        document.getElementById('cartIcon').addEventListener('click', () => addToCart(products[0]));
+        document.getElementById('chatIcon').addEventListener('click', startPrivateChat);
+
+        // Display products when the page loads
+        displayProducts();
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp-like Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    #chat-container {
+      max-width: 400px;
+      margin: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #chat-messages {
+      height: 300px;
+      overflow-y: scroll;
+      padding: 10px;
+    }
+
+    #input-container {
+      display: flex;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    #message-input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    #send-button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-messages"></div>
+    <div id="input-container">
+      <input type="text" id="message-input" placeholder="Type a message...">
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript for handling chat functionality
+    document.addEventListener('DOMContentLoaded', function () {
+      var messageInput = document.getElementById('message-input');
+      var sendButton = document.getElementById('send-button');
+      var chatMessages = document.getElementById('chat-messages');
+
+      sendButton.addEventListener('click', function () {
+        sendMessage();
+      });
+
+      // Function to send a message
+      function sendMessage() {
+        var messageText = messageInput.value.trim();
+        if (messageText !== '') {
+          var messageElement = document.createElement('div');
+          messageElement.className = 'message';
+          messageElement.textContent = messageText;
+
+          chatMessages.appendChild(messageElement);
+
+          // Clear the input field
+          messageInput.value = '';
+
+          // Scroll to the bottom of the chat
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
